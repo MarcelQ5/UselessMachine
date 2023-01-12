@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class NormalMode extends AppCompatActivity {
     private boolean isOn = false;
-    ShareActionProvider shareActionProvider;
+    private ShareActionProvider shareActionProvider;
     int scoreNormal = 0;
 
     @Override
@@ -55,7 +55,7 @@ public class NormalMode extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.general_menu, menu);
         MenuItem shareItem = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-        setShareText("My current Normal score for the useless machine is: " + Integer.toString(scoreNormal) + " clicks");
+        setShareText("My current Normal score for the useless machine is: " + scoreNormal + " clicks");
         return true;
     }
 
