@@ -1,4 +1,6 @@
 [![UselessMachine](https://github.com/MarcelQ5/UselessMachine/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/MarcelQ5/UselessMachine/actions/workflows/gradle.yml)
+[![Release](https://img.shields.io/github/v/release/MarcelQ5/UselessMachine?include_prereleases&style=plastic)]( https://github.com/MarcelQ5/UselessMachine/releases)
+
 
 # Useless Machine
 
