@@ -6,7 +6,6 @@ import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
