@@ -39,7 +39,7 @@ public class XtremeMode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xtreme_mode);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarXtreme);
+        Toolbar toolbar = findViewById(R.id.toolbarXtreme);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,7 +62,7 @@ public class XtremeMode extends AppCompatActivity {
                 int imageID = getResources().getIdentifier(randomXtreme.getImageName(), "drawable", getPackageName());
                 image.setImageResource(imageID);
                 image.setVisibility(View.VISIBLE);
-                final long waitTimeImage = (long) (1500);
+                final long waitTimeImage = 1500;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                     Log.d("Vibrate", "Vibration!");
