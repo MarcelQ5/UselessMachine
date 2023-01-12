@@ -9,7 +9,6 @@ import androidx.core.view.MenuItemCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.number.IntegerWidth;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +30,7 @@ public class NormalMode extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView score = findViewById(R.id.displayScoreNormal);
-        score.setText("Score: " + scoreNormal + " clicks");
+        score.setText(String.format(getString(R.string.score), scoreNormal));
         score.invalidate();
     }
 
@@ -70,14 +69,12 @@ public class NormalMode extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.backToMainMenu:
-                Intent backToMain = new Intent(this, MainActivity.class);
-                startActivity(backToMain);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.backToMainMenu) {
+            Intent backToMain = new Intent(this, MainActivity.class);
+            startActivity(backToMain);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onMainSwitchNormalClicked(View view) {
@@ -89,13 +86,78 @@ public class NormalMode extends AppCompatActivity {
             final long waitTime = (long)(1500*Math.random());
             switchButton.postDelayed(() -> {
                 switchButton.setImageResource(R.drawable.switch_off);
-                //quote.setText(waitTime + "ms");
-                quote.setText(QuoteDatabase.getRandomQuoteNormal());
+                quote.setText(getRandomQuote());
             }, waitTime);
             isOn = false;
             scoreNormal++;
             TextView score = findViewById(R.id.displayScoreNormal);
-            score.setText("Score: " + scoreNormal + " clicks");
+            score.setText(String.format(getString(R.string.score), scoreNormal));
+        }
+    }
+
+    private String getRandomQuote() {
+        int rand = (int) (Math.random() * 29);
+        switch (rand) {
+            case 1:
+                return getString(R.string.Q1);
+            case 2:
+                return getString(R.string.Q2);
+            case 3:
+                return getString(R.string.Q3);
+            case 4:
+                return getString(R.string.Q4);
+            case 5:
+                return getString(R.string.Q5);
+            case 6:
+                return getString(R.string.Q6);
+            case 7:
+                return getString(R.string.Q7);
+            case 8:
+                return getString(R.string.Q8);
+            case 9:
+                return getString(R.string.Q9);
+            case 10:
+                return getString(R.string.Q10);
+            case 11:
+                return getString(R.string.Q11);
+            case 12:
+                return getString(R.string.Q12);
+            case 13:
+                return getString(R.string.Q13);
+            case 14:
+                return getString(R.string.Q14);
+            case 15:
+                return getString(R.string.Q15);
+            case 16:
+                return getString(R.string.Q16);
+            case 17:
+                return getString(R.string.Q17);
+            case 18:
+                return getString(R.string.Q18);
+            case 19:
+                return getString(R.string.Q19);
+            case 20:
+                return getString(R.string.Q20);
+            case 21:
+                return getString(R.string.Q21);
+            case 22:
+                return getString(R.string.Q22);
+            case 23:
+                return getString(R.string.Q23);
+            case 24:
+                return getString(R.string.Q24);
+            case 25:
+                return getString(R.string.Q25);
+            case 26:
+                return getString(R.string.Q26);
+            case 27:
+                return getString(R.string.Q27);
+            case 28:
+                return getString(R.string.Q28);
+            case 29:
+                return getString(R.string.Q29);
+            default:
+                return "Error";
         }
     }
 
