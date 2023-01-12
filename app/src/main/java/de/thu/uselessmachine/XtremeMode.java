@@ -66,14 +66,12 @@ public class XtremeMode extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.backToMainMenu:
-                Intent backToMain = new Intent(this, MainActivity.class);
-                startActivity(backToMain);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.backToMainMenu) {
+            Intent backToMain = new Intent(this, MainActivity.class);
+            startActivity(backToMain);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onMainSwitchXtremeClicked(View view) {
@@ -86,17 +84,13 @@ public class XtremeMode extends AppCompatActivity {
             switchButton.setImageResource(R.drawable.switch_on);
             XtremeObject randomXtreme = QuoteDatabase.getRandomXtreme();
             quote.setText(randomXtreme.getQuote());
-            int imageID = context.getResources().getIdentifier(randomXtreme.getImageName(),"drawable", context.getPackageName());
+            int imageID = context.getResources().getIdentifier(randomXtreme.getImageName(), "drawable", context.getPackageName());
             image.setImageResource(imageID);
             image.setVisibility(View.VISIBLE);
-            final long waitTimeImage = (long)(1500);
-            final long waitTimeSwitch = (long)(waitTimeImage+(800*Math.random()));
-            image.postDelayed(() -> {
-                image.setVisibility(View.INVISIBLE);
-            }, waitTimeImage);
-            switchButton.postDelayed(() -> {
-                switchButton.setImageResource(R.drawable.switch_off);
-            }, waitTimeSwitch);
+            final long waitTimeImage = (long) (1500);
+            final long waitTimeSwitch = (long) (waitTimeImage + (800 * Math.random()));
+            image.postDelayed(() -> image.setVisibility(View.INVISIBLE), waitTimeImage);
+            switchButton.postDelayed(() -> switchButton.setImageResource(R.drawable.switch_off), waitTimeSwitch);
             isOn = false;
             scoreXtreme++;
         }
