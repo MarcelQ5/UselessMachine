@@ -12,8 +12,10 @@ public class QuoteDatabase {
                 new XtremeObject("Imagine using Linux lmao", "linux_user"),
                 new XtremeObject("Get in the damn robot Shinji", "shinji"),
                 new XtremeObject("天恩門廣場大屠殺", "ccp"),
-                new XtremeObject("Cope harder", "gigachad")
-
+                new XtremeObject("Cope harder", "gigachad"),
+                new XtremeObject("This is getting out of hand. Now there are two of them!", "now_there_are_two_of_them"),
+                new XtremeObject("Hello there!", "hello_there"),
+                new XtremeObject("General Kenobi!", "general_kenobi")
         };
 
         public static XtremeObject getRandomXtreme() {
