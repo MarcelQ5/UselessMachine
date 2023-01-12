@@ -9,7 +9,6 @@ import androidx.core.view.MenuItemCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -25,6 +24,7 @@ import android.widget.TextView;
 public class NormalMode extends AppCompatActivity {
     private boolean isOn = false;
     private ShareActionProvider shareActionProvider;
+    TextView scoretext;
     SharedPreferences prefs;
     int scoreNormal;
 
@@ -40,9 +40,34 @@ public class NormalMode extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         scoreNormal = prefs.getInt("scoreNormal", 0);
-        TextView score = findViewById(R.id.displayScoreNormal);
-        score.setText(String.format(getString(R.string.score), scoreNormal));
-        score.invalidate();
+        scoretext = findViewById(R.id.displayScoreNormal);
+        scoretext.setText(String.format(getString(R.string.score), scoreNormal));
+        scoretext.invalidate();
+        findViewById(R.id.switchButtonNormal).setOnClickListener(l -> {
+            ImageButton switchButton = findViewById(R.id.switchButtonNormal);
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (!isOn) {
+                isOn = true;
+                TextView quote = findViewById(R.id.quoteNormal);
+                switchButton.setImageResource(R.drawable.switch_on);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                    Log.d("Vibrate", "Vibration!");
+                } else {
+                    v.vibrate(500);
+                    Log.d("Vibrate", "Vibration!");
+                }
+                final long waitTime = (long) (1500 * Math.random());
+                switchButton.postDelayed(() -> {
+
+                    switchButton.setImageResource(R.drawable.switch_off);
+                    quote.setText(getRandomQuote());
+                }, waitTime);
+                isOn = false;
+                scoreNormal++;
+                scoretext.setText(String.format(getString(R.string.score), scoreNormal));
+            }
+        });
     }
 
     @Override

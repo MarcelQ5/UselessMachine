@@ -29,8 +29,11 @@ public class XtremeMode extends AppCompatActivity {
     private ShareActionProvider shareActionProvider;
     int scoreXtreme;
     SharedPreferences prefs;
+    TextView scoretext;
     MediaPlayer mediaPlayer;
+
     @Override
+    @SuppressLint("DiscouragedApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xtreme_mode);
@@ -42,12 +45,40 @@ public class XtremeMode extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         scoreXtreme = prefs.getInt("scoreXtreme", 0);
-        TextView score = findViewById(R.id.displayScoreXtreme);
-        score.setText(String.format(getString(R.string.score), scoreXtreme));
-        score.invalidate();
-
-        int resID=getResources().getIdentifier("funky_town", "raw", getPackageName());
-        mediaPlayer=MediaPlayer.create(this,resID);
+        scoretext = findViewById(R.id.displayScoreXtreme);
+        scoretext.setText(String.format(getString(R.string.score), scoreXtreme));
+        scoretext.invalidate();
+        findViewById(R.id.switchButtonXtreme).setOnClickListener(y -> {
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            ImageButton switchButton = findViewById(R.id.switchButtonXtreme);
+            ImageView image = findViewById(R.id.memeImage);
+            if (!isOn) {
+                isOn = true;
+                TextView quote = findViewById(R.id.quoteXtreme);
+                switchButton.setImageResource(R.drawable.switch_on);
+                XtremeObject randomXtreme = QuoteDatabase.getRandomXtreme();
+                quote.setText(randomXtreme.getQuote());
+                int imageID = getResources().getIdentifier(randomXtreme.getImageName(), "drawable", getPackageName());
+                image.setImageResource(imageID);
+                image.setVisibility(View.VISIBLE);
+                final long waitTimeImage = (long) (1500);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                    Log.d("Vibrate", "Vibration!");
+                } else {
+                    v.vibrate(500);
+                    Log.d("Vibrate", "Vibration!");
+                }
+                final long waitTimeSwitch = (long) (waitTimeImage + (800 * Math.random()));
+                image.postDelayed(() -> image.setVisibility(View.INVISIBLE), waitTimeImage);
+                switchButton.postDelayed(() -> switchButton.setImageResource(R.drawable.switch_off), waitTimeSwitch);
+                isOn = false;
+                scoreXtreme++;
+                scoretext.setText(String.format(getString(R.string.score), scoreXtreme));
+            }
+        });
+        int resID = getResources().getIdentifier("funky_town", "raw", getPackageName());
+        mediaPlayer = MediaPlayer.create(this, resID);
         mediaPlayer.start();
     }
 
@@ -90,38 +121,5 @@ public class XtremeMode extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressLint("DiscouragedApi")
-    public void onMainSwitchXtremeClicked(View view) {
-        Context context = this;
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        ImageButton switchButton = findViewById(R.id.switchButtonXtreme);
-        ImageView image = findViewById(R.id.memeImage);
-        if (!isOn) {
-            isOn = true;
-            TextView quote = findViewById(R.id.quoteXtreme);
-            switchButton.setImageResource(R.drawable.switch_on);
-            XtremeObject randomXtreme = QuoteDatabase.getRandomXtreme();
-            quote.setText(randomXtreme.getQuote());
-            int imageID = context.getResources().getIdentifier(randomXtreme.getImageName(), "drawable", context.getPackageName());
-            image.setImageResource(imageID);
-            image.setVisibility(View.VISIBLE);
-            final long waitTimeImage = (long) (1500);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                Log.d("Vibrate", "Vibration!");
-            } else {
-                v.vibrate(500);
-                Log.d("Vibrate", "Vibration!");
-            }
-            final long waitTimeSwitch = (long) (waitTimeImage + (800 * Math.random()));
-            image.postDelayed(() -> image.setVisibility(View.INVISIBLE), waitTimeImage);
-            switchButton.postDelayed(() -> switchButton.setImageResource(R.drawable.switch_off), waitTimeSwitch);
-            isOn = false;
-            scoreXtreme++;
-            TextView score = findViewById(R.id.displayScoreXtreme);
-            score.setText(String.format(getString(R.string.score), scoreXtreme));
-        }
     }
 }
