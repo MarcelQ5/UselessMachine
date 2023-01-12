@@ -29,6 +29,10 @@ public class XtremeMode extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbarXtreme);
         setSupportActionBar(toolbar);
+
+        TextView score = findViewById(R.id.displayScoreXtreme);
+        score.setText(String.format(getString(R.string.score), scoreXtreme));
+        score.invalidate();
     }
 
     @Override
@@ -93,6 +97,8 @@ public class XtremeMode extends AppCompatActivity {
             switchButton.postDelayed(() -> switchButton.setImageResource(R.drawable.switch_off), waitTimeSwitch);
             isOn = false;
             scoreXtreme++;
+            TextView score = findViewById(R.id.displayScoreXtreme);
+            score.setText(String.format(getString(R.string.score), scoreXtreme));
         }
     }
 }
