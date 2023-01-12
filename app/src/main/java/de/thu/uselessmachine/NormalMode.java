@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ public class NormalMode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_mode);
-        prefs = getPreferences(Context.MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarNormal);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +38,7 @@ public class XtremeMode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xtreme_mode);
-        prefs = getPreferences(Context.MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarXtreme);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -93,7 +94,6 @@ public class XtremeMode extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         scoreXtreme= prefs.getInt("scoreXtreme", 0);
     }
 
