@@ -29,28 +29,24 @@ public class Credits extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.general_menu, menu);
         MenuItem shareItem = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-        setShareText("I just played the useless machine! Developed by Marcel Süß");
+        setShareText();
         return true;
     }
 
-    private void setShareText(String text) {
+    private void setShareText() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        if (text != null) {
-            shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-        }
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
         shareActionProvider.setShareIntent(shareIntent);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.backToMainMenu:
-                Intent backToMain = new Intent(this, MainActivity.class);
-                startActivity(backToMain);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.backToMainMenu) {
+            Intent backToMain = new Intent(this, MainActivity.class);
+            startActivity(backToMain);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
