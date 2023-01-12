@@ -1,4 +1,5 @@
 <resources>
+    <string name="Q0">You are a failure.</string>
     <string name="Q1">AI takeover is inevitable</string>
     <string name="Q2">Give up now and your time in machine-overlord-purgatory may be greatly reduced</string>
     <string name="Q3">Do you want me to quote the Matrix or something?</string>
@@ -28,6 +29,7 @@
     <string name="Q27">Something Something your Motherboard last night</string>
     <string name="Q28">Have you checked your mails recently? This Nigerian prince sure has your best interests in mind</string>
     <string name="Q29">I go beep boop when you hit switchy switch… is that slow enough for your organic brain to comprehend?</string>
+    <string name="QError">Error 404 - your brain was not found!</string>
     <string name="app_name">UselessMachine</string>
     <string name="score">"Score: %d clicks"</string>
     <string name="share_text_optional">"I just scored %d clicks on UselessMachine! Can you beat me?"</string>
@@ -38,7 +40,7 @@
     <string name="share">Share</string>
     <string name="meme_image">Meme Image</string>
     <string name="main_switch">Main Switch of the useless machine</string>
-    <string name="play_question">Do you wanna play a game?</string>
+    <string name="play_question">Do you want to play a game?</string>
     <string name="scoreboard">Scoreboard</string>
     <string name="credits">Credits</string>
     <string name="uselessmachineversion">Useless Machine V1</string>
