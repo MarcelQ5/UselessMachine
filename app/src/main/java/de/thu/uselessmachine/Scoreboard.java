@@ -20,12 +20,14 @@ public class Scoreboard extends AppCompatActivity {
     private int scoreNormal;
     private int scoreXtreme;
     private ShareActionProvider shareActionProvider;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
         scoreOverall = scoreNormal + scoreXtreme;
+        prefs = getPreferences(Context.MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbarScoreboard);
         setSupportActionBar(toolbar);
@@ -33,19 +35,24 @@ public class Scoreboard extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        scoreXtreme = prefs.getInt("scoreXtreme", 0);
+        scoreNormal = prefs.getInt("scoreNormal", 0);
+        scoreOverall = scoreNormal + scoreXtreme;
         TextView scoreOverallView = findViewById(R.id.overallScore);
         TextView scoreNormalView = findViewById(R.id.scoreNormal);
         TextView scoreXtremeView = findViewById(R.id.scoreXtreme);
         scoreOverallView.setText(String.format(getString(R.string.score_overall), scoreOverall));
         scoreNormalView.setText(String.format(getString(R.string.score_normal), scoreNormal));
         scoreXtremeView.setText(String.format(getString(R.string.score_xtreme), scoreXtreme));
+        scoreOverallView.invalidate();
+        scoreNormalView.invalidate();
+        scoreXtremeView.invalidate();
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         scoreOverall = scoreNormal + scoreXtreme;
         editor.putInt("scoreOverall", scoreOverall);
@@ -56,7 +63,6 @@ public class Scoreboard extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         scoreOverall = prefs.getInt("scoreOverall", 0);
         scoreNormal = prefs.getInt("scoreNormal", 0);
         scoreXtreme = prefs.getInt("scoreXtreme", 0);

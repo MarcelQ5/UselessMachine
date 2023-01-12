@@ -9,6 +9,7 @@ import androidx.core.view.MenuItemCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -102,6 +103,7 @@ public class NormalMode extends AppCompatActivity {
             }
             final long waitTime = (long)(1500*Math.random());
             switchButton.postDelayed(() -> {
+
                 switchButton.setImageResource(R.drawable.switch_off);
                 quote.setText(getRandomQuote());
             }, waitTime);

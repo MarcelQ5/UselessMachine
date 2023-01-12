@@ -23,25 +23,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.IOException;
-
 
 public class XtremeMode extends AppCompatActivity {
     private boolean isOn = false;
     private ShareActionProvider shareActionProvider;
-    int scoreXtreme = 0;
+    int scoreXtreme;
+    SharedPreferences prefs;
     MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xtreme_mode);
-
+        prefs = getPreferences(Context.MODE_PRIVATE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarXtreme);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        scoreXtreme = prefs.getInt("scoreXtreme", 0);
         TextView score = findViewById(R.id.displayScoreXtreme);
         score.setText(String.format(getString(R.string.score), scoreXtreme));
         score.invalidate();
@@ -54,7 +54,6 @@ public class XtremeMode extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("scoreXtreme", scoreXtreme);
         editor.apply();
