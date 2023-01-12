@@ -12,13 +12,13 @@
 
 ## Screenshots
 
-<!--
+
 <div align="center">
-<img src="./docs/assets/screenshots/" width="300"  />
-<img style="margin-left: 100px" src="./docs/assets/screenshots/" width="300"/>
+<img src="./docs/assets/screenshot1.png" width="300"  />
+<img style="margin-left: 100px" src="./docs/assets/screenshot2.png" width="300"/>
 </div>
 </br>
--->
+
 
 
 ## Prerequisites
