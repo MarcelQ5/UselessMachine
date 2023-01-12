@@ -35,4 +35,15 @@
     <string name="score_overall">Score overall: %d clicks</string>
     <string name="score_normal">Score in Normal mode: %d clicks</string>
     <string name="score_xtreme">Score in Xtreme mode: %d clicks</string>
+    <string name="share">Share</string>
+    <string name="meme_image">Meme Image</string>
+    <string name="main_switch">Main Switch of the useless machine</string>
+    <string name="play_question">Do you wanna play a game?</string>
+    <string name="scoreboard">Scoreboard</string>
+    <string name="credits">Credits</string>
+    <string name="uselessmachineversion">Useless Machine V1</string>
+    <string name="normal_mode">Normal Mode</string>
+    <string name="xtreme_mode">X-Treme Mode</string>
+    <string name="developed_by">Developed by Marcel Süß 2023</string>
+    <string name="disclaimer">Disclaimer: All images and sound files used are either stock images or property of their respective companies. The Developer does NOT claim ownership of any of those assets. The usage of these assets falls under the fair use policy</string>
 </resources>
