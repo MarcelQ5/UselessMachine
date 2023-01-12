@@ -24,18 +24,21 @@ import android.widget.TextView;
 public class NormalMode extends AppCompatActivity {
     private boolean isOn = false;
     private ShareActionProvider shareActionProvider;
-    int scoreNormal = 0;
+    SharedPreferences prefs;
+    int scoreNormal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_mode);
+        prefs = getPreferences(Context.MODE_PRIVATE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarNormal);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        scoreNormal = prefs.getInt("scoreNormal", 0);
         TextView score = findViewById(R.id.displayScoreNormal);
         score.setText(String.format(getString(R.string.score), scoreNormal));
         score.invalidate();
@@ -44,7 +47,6 @@ public class NormalMode extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("scoreNormal", scoreNormal);
         editor.apply();
@@ -52,7 +54,6 @@ public class NormalMode extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         scoreNormal= prefs.getInt("scoreNormal", 0);
     }
 
