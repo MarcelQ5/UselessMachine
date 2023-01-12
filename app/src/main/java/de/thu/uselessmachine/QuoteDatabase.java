@@ -15,11 +15,11 @@ public class QuoteDatabase {
                 new XtremeObject("Cope harder", "gigachad"),
                 new XtremeObject("This is getting out of hand. Now there are two of them!", "now_there_are_two_of_them"),
                 new XtremeObject("Hello there!", "hello_there"),
-                new XtremeObject("General Kenobi!", "general_kenobi")
+                new XtremeObject("General Kenobi!", "general_kenobi"),
+                new XtremeObject("Won't you take me to funkytown", "funkytown")
         };
 
         public static XtremeObject getRandomXtreme() {
             return XTREME[(int) (Math.random() * XTREME.length)];
         }
-
-}
+    }
