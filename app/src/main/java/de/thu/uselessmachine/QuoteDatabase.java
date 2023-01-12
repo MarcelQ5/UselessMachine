@@ -44,7 +44,10 @@ public class QuoteDatabase {
                 new XtremeObject("Jesse, we need to call Saul", "heisenberg"),
                 new XtremeObject("It's Morbin Time!", "morbius"),
                 new XtremeObject("Look at the tasteful thickness", "patrick_bateman"),
-                new XtremeObject("Imagine using Linux lmao", "linux_user")
+                new XtremeObject("Imagine using Linux lmao", "linux_user"),
+                new XtremeObject("Get in the damn robot Shinji", "shinji"),
+                new XtremeObject("天恩門廣場大屠殺", "ccp"),
+                new XtremeObject("Cope harder", "gigachad")
 
         };
 
