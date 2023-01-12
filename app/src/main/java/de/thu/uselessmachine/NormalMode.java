@@ -17,7 +17,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -34,7 +33,7 @@ public class NormalMode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_mode);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarNormal);
+        Toolbar toolbar = findViewById(R.id.toolbarNormal);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -110,39 +109,11 @@ public class NormalMode extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-    public void onMainSwitchNormalClicked(View view) {
-        ImageButton switchButton = findViewById(R.id.switchButtonNormal);
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (!isOn) {
-            isOn = true;
-            TextView quote = findViewById(R.id.quoteNormal);
-            switchButton.setImageResource(R.drawable.switch_on);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                Log.d("Vibrate", "Vibration!");
-            } else {
-                v.vibrate(500);
-                Log.d("Vibrate", "Vibration!");
-            }
-            final long waitTime = (long)(1500*Math.random());
-            switchButton.postDelayed(() -> {
-
-                switchButton.setImageResource(R.drawable.switch_off);
-                quote.setText(getRandomQuote());
-            }, waitTime);
-            isOn = false;
-            scoreNormal++;
-            TextView score = findViewById(R.id.displayScoreNormal);
-            score.setText(String.format(getString(R.string.score), scoreNormal));
-        }
-    }
-
     private String getRandomQuote() {
         int rand = (int) (Math.random() * 29);
         switch (rand) {
+            case 0:
+                return getString(R.string.Q0);
             case 1:
                 return getString(R.string.Q1);
             case 2:
@@ -202,7 +173,7 @@ public class NormalMode extends AppCompatActivity {
             case 29:
                 return getString(R.string.Q29);
             default:
-                return "Error";
+                return getString(R.string.QError);
         }
     }
 }
