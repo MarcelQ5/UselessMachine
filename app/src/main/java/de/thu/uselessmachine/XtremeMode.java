@@ -9,7 +9,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,6 +87,7 @@ public class XtremeMode extends AppCompatActivity {
     @SuppressLint("DiscouragedApi")
     public void onMainSwitchXtremeClicked(View view) {
         Context context = this;
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         ImageButton switchButton = findViewById(R.id.switchButtonXtreme);
         ImageView image = findViewById(R.id.memeImage);
         if (!isOn) {
@@ -95,6 +100,13 @@ public class XtremeMode extends AppCompatActivity {
             image.setImageResource(imageID);
             image.setVisibility(View.VISIBLE);
             final long waitTimeImage = (long) (1500);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                Log.d("Vibrate", "Vibration!");
+            } else {
+                v.vibrate(500);
+                Log.d("Vibrate", "Vibration!");
+            }
             final long waitTimeSwitch = (long) (waitTimeImage + (800 * Math.random()));
             image.postDelayed(() -> image.setVisibility(View.INVISIBLE), waitTimeImage);
             switchButton.postDelayed(() -> switchButton.setImageResource(R.drawable.switch_off), waitTimeSwitch);

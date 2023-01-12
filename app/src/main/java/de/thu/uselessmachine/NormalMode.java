@@ -9,7 +9,11 @@ import androidx.core.view.MenuItemCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,12 +82,23 @@ public class NormalMode extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     public void onMainSwitchNormalClicked(View view) {
         ImageButton switchButton = findViewById(R.id.switchButtonNormal);
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (!isOn) {
             isOn = true;
             TextView quote = findViewById(R.id.quoteNormal);
             switchButton.setImageResource(R.drawable.switch_on);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                Log.d("Vibrate", "Vibration!");
+            } else {
+                v.vibrate(500);
+                Log.d("Vibrate", "Vibration!");
+            }
             final long waitTime = (long)(1500*Math.random());
             switchButton.postDelayed(() -> {
                 switchButton.setImageResource(R.drawable.switch_off);
@@ -161,5 +176,4 @@ public class NormalMode extends AppCompatActivity {
                 return "Error";
         }
     }
-
 }
