@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -22,11 +23,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.IOException;
+
 
 public class XtremeMode extends AppCompatActivity {
     private boolean isOn = false;
     private ShareActionProvider shareActionProvider;
     int scoreXtreme = 0;
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,10 @@ public class XtremeMode extends AppCompatActivity {
         TextView score = findViewById(R.id.displayScoreXtreme);
         score.setText(String.format(getString(R.string.score), scoreXtreme));
         score.invalidate();
+
+        int resID=getResources().getIdentifier("funky_town", "raw", getPackageName());
+        mediaPlayer=MediaPlayer.create(this,resID);
+        mediaPlayer.start();
     }
 
     @Override
@@ -50,6 +58,7 @@ public class XtremeMode extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("scoreXtreme", scoreXtreme);
         editor.apply();
+        mediaPlayer.release();
     }
     @Override
     protected void onResume() {
