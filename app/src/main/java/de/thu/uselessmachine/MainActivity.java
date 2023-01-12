@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,22 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
     }
-
-
-    //public void onNormalModeButtonClicked(View view) {
-    //    Intent intent = new Intent(this, NormalMode.class);
-    //    startActivity(intent);
-    //}
-
-    //public void onXtremeModeButtonClicked(View view) {
-    //    Intent intent = new Intent(this, XtremeMode.class);
-    //    startActivity(intent);
-    //}
-
-    //public void onScoreboardButtonClicked(View view) {
-    //    Intent intent = new Intent(this, Scoreboard.class);
-    //    startActivity(intent);
-    //}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
