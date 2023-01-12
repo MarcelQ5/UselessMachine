@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -34,9 +33,9 @@ public class Scoreboard extends AppCompatActivity {
         TextView scoreOverallView = findViewById(R.id.overallScore);
         TextView scoreNormalView = findViewById(R.id.scoreNormal);
         TextView scoreXtremeView = findViewById(R.id.scoreXtreme);
-        scoreOverallView.setText("Score overall: " + scoreOverall + " clicks");
-        scoreNormalView.setText("Score in Normal mode: " + scoreNormal + " clicks");
-        scoreXtremeView.setText("Score in Xtreme mode: " + scoreXtreme + " clicks");
+        scoreOverallView.setText(String.format(getString(R.string.score_overall), scoreOverall));
+        scoreNormalView.setText(String.format(getString(R.string.score_normal), scoreNormal));
+        scoreXtremeView.setText(String.format(getString(R.string.score_xtreme), scoreXtreme));
 
     }
 
@@ -80,13 +79,11 @@ public class Scoreboard extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.backToMainMenu:
-                Intent backToMain = new Intent(this, MainActivity.class);
-                startActivity(backToMain);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.backToMainMenu) {
+            Intent backToMain = new Intent(this, MainActivity.class);
+            startActivity(backToMain);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
