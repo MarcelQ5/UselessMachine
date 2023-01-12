@@ -29,7 +29,10 @@ public class Scoreboard extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarScoreboard);
         setSupportActionBar(toolbar);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         TextView scoreOverallView = findViewById(R.id.overallScore);
         TextView scoreNormalView = findViewById(R.id.scoreNormal);
         TextView scoreXtremeView = findViewById(R.id.scoreXtreme);
@@ -79,10 +82,8 @@ public class Scoreboard extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.backToMainMenu) {
-            Intent backToMain = new Intent(this, MainActivity.class);
-            startActivity(backToMain);
-            return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
