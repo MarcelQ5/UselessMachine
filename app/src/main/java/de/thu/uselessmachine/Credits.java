@@ -22,6 +22,10 @@ public class Credits extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarCredits);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override
@@ -42,10 +46,8 @@ public class Credits extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.backToMainMenu) {
-            Intent backToMain = new Intent(this, MainActivity.class);
-            startActivity(backToMain);
-            return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

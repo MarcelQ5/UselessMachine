@@ -38,7 +38,7 @@
             android:id="@+id/scoreboardCaptionText"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:text="Scoreboard"
+            android:text="@string/scoreboard"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="34sp" />
@@ -47,21 +47,18 @@
             android:id="@+id/scoreNormal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Score in Normal mode: 0 clicks"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/scoreXtreme"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Score in Xtreme mode: 0 clicks"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/overallScore"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Score overall: 0 clicks"
             android:textSize="18sp" />
 
     </LinearLayout>
