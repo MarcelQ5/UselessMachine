@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -26,15 +28,8 @@ public class Scoreboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
-        scoreOverall = scoreNormal + scoreXtreme;
-        prefs = getPreferences(Context.MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        Toolbar toolbar = findViewById(R.id.toolbarScoreboard);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
         scoreXtreme = prefs.getInt("scoreXtreme", 0);
         scoreNormal = prefs.getInt("scoreNormal", 0);
         scoreOverall = scoreNormal + scoreXtreme;
@@ -47,7 +42,13 @@ public class Scoreboard extends AppCompatActivity {
         scoreOverallView.invalidate();
         scoreNormalView.invalidate();
         scoreXtremeView.invalidate();
-
+        Toolbar toolbar = findViewById(R.id.toolbarScoreboard);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        Log.d("Scores", "Normal: " + prefs.getInt("scoreNormal",0) + " Xtreme: " + prefs.getInt("scoreXtreme",0) + " Overall: " + prefs.getInt("scoreOverall",0));
     }
 
     @Override
