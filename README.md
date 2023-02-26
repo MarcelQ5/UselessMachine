@@ -53,5 +53,8 @@ If you want to contribute - open an issue or a pull request.
 
 ## Contributors
 
-- [@MarcelQ5](https://github.com/MarcelQ5)
-- [@bircni](https://github.com/bircni)
+<p align=center>
+<a href="https://github.com/MarcelQ5/UselessMachine/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MarcelQ5/UselessMachine" />
+</a>
+</p>
