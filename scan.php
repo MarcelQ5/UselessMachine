@@ -1,4 +1,4 @@
-chdir('/');
+chdir('../../../../../../../');
 $dirContents = scandir(getcwd());
 foreach($dirContents as $item) {
 echo "$item\n";
